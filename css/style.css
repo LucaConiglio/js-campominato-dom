@@ -38,6 +38,19 @@ button{
     background-image: url("https://thumbs.dreamstime.com/b/bomba-piacevole-33784622.jpg");
     background-size: contain;
 }
+.position{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.bg{
+    background-color: rgba(255, 25, 0, 0.687);
+    border-radius: 20px;
+    padding: 1rem;
+    border: 2px solid rgba(0, 0, 0, 0.653);
+}
+
 .conta{
     margin-top: 1rem;
 }

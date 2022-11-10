@@ -85,8 +85,10 @@ bottone.addEventListener ( "click", function () {
                 if ( bombs.includes( numCella ) ) {
                     // se si, BOOM!
                     alert( "Hai trovato una bomba!!! Game Over!" );
-                  
-                    this.classList.add( "danger" );
+                    
+                    this.classList.add( "danger");
+                    conta.classList.add( "position","bg" );
+                    console.log(this);
                     conta.innerHTML = "il tuo punteggio é di " + counter ;
                     bombaEsplosa = true
                   } else {
