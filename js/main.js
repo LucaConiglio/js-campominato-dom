@@ -1,6 +1,9 @@
+
 // dichiaro il bottone fuori la funzione
 const bottone = document.getElementById("bottone");
 let bombs;
+
+let bombaEsplosa = false
 
 //creo la funzione al click
 bottone.addEventListener ( "click", function () {
@@ -56,18 +59,40 @@ bottone.addEventListener ( "click", function () {
 
         }
 
+        let counter = 0
+
             // al click del div nuovaCella
             function onCellClick() {
-
+                if(bombaEsplosa === true){
+                  return
+                }
                 const numCella = +this.dataset.numCella;
+
+                let conta = document.querySelector(".conta");
+                if (this.classList.contains("bg-cella") ){
+
+                  return
+                }
+
+                if (this.classList.contains("danger")){
+                  
+                  return
+                }
+
+                counter ++
+                
 
                 if ( bombs.includes( numCella ) ) {
                     // se si, BOOM!
                     alert( "Hai trovato una bomba!!! Game Over!" );
-                
+                  
                     this.classList.add( "danger" );
+                    conta.innerHTML = "il tuo punteggio é di " + counter ;
+                    bombaEsplosa = true
                   } else {
                     this.classList.toggle( "bg-cella" );
+                    conta.innerHTML = "l'utente ha cliccato " + counter + " volte"; 
+                    
                   }
                 //cambiamo con toggle il background se ce l'ha lo togliamo e viceversa
             }
@@ -78,7 +103,7 @@ bottone.addEventListener ( "click", function () {
               }
 
 
-              function generateBombsList ( numCelle ) {
+              function generateBombsList ( totGriglie ) {
 
                 //creo un array vuota dove successivamente andremo ad aggiungere gli elementi
                 const bombsList = [];
