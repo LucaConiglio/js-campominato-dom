@@ -88,7 +88,7 @@ bottone.addEventListener ( "click", function () {
                 if ( bombs.includes( numCella ) ) {
                     // se si, BOOM!
                     alert( "Hai trovato una bomba!!! Game Over!" );
-
+                    
                     
                     
                     this.classList.add( "danger");
@@ -97,10 +97,13 @@ bottone.addEventListener ( "click", function () {
                     conta.innerHTML = "il tuo punteggio é di " + (counter - 1) ;
                     console.log("bombs",bombs);
                     bombaEsplosa = true
-                    // for (i = 0; i<bombs.length; i++) {
-                    //  allBombs = document.querySelector(`celle:nth-child(${bombs[i]})`);
-                    // };
-                    // allBombs.classList.add("danger")
+
+                     for (i = 0; i<bombs.length; i++) {
+                      allBombs = document.querySelector(`.container-griglie :nth-child(${bombs[i]})`);
+                      allBombs.classList.add("danger")
+                     };
+                     
+                    
                   
                     
                     
