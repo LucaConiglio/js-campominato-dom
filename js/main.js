@@ -3,7 +3,8 @@
 const bottone = document.getElementById("bottone");
 let bombs;
 
-let bombaEsplosa = false
+let bombaEsplosa = false;
+let totGriglie;
 
 //creo la funzione al click
 bottone.addEventListener ( "click", function () {
@@ -60,14 +61,16 @@ bottone.addEventListener ( "click", function () {
         }
 
         let counter = 0
+        
 
             // al click del div nuovaCella
             function onCellClick() {
+              //se bomba é uguale a true blocca tutto
                 if(bombaEsplosa === true){
                   return
                 }
                 const numCella = +this.dataset.numCella;
-
+                //creo una variabile e collego il conta
                 let conta = document.querySelector(".conta");
                 if (this.classList.contains("bg-cella") ){
 
@@ -81,19 +84,38 @@ bottone.addEventListener ( "click", function () {
 
                 counter ++
                 
-
+                let allBombs
                 if ( bombs.includes( numCella ) ) {
                     // se si, BOOM!
                     alert( "Hai trovato una bomba!!! Game Over!" );
+
+                    
                     
                     this.classList.add( "danger");
                     conta.classList.add( "position","bg" );
-                    
-                    conta.innerHTML = "il tuo punteggio é di " + counter ;
+                    console.log("di this",this);
+                    conta.innerHTML = "il tuo punteggio é di " + (counter - 1) ;
+                    console.log("bombs",bombs);
                     bombaEsplosa = true
+                    // for (i = 0; i<bombs.length; i++) {
+                    //  allBombs = document.querySelector(`celle:nth-child(${bombs[i]})`);
+                    // };
+                    // allBombs.classList.add("danger")
+                  
+                    
+                    
+                    console.log("numCella", numCella);
+                    
                   } else {
                     this.classList.toggle( "bg-cella" );
+                    conta.classList.add( "position" );
                     conta.innerHTML = "l'utente ha cliccato " + counter + " volte"; 
+                    console.log(counter);
+                    if (counter === (totGriglie - 16)){
+                      conta.classList.add( "position","bg" );
+                      conta.innerHTML = "VITTORIA hai cliccato le celle n. " + counter  + " volte"; 
+                      alert("Hai vinto!!!!")
+                    }
                     
                   }
                 //cambiamo con toggle il background se ce l'ha lo togliamo e viceversa
@@ -113,18 +135,18 @@ bottone.addEventListener ( "click", function () {
                 //faccio un log dell'array 
                 console.log(bombsList);
 
-                // creo un ciclo fino a quando l'array non raggiunge 16 numeri
-                while ( bombsList.length < 16 ) {
-                  // genero un numero random
-                  const num = generateRandomNumber( 1, totGriglie );
-              
-                  // se bombsList noncontiene num
-                  if ( !bombsList.includes( num ) ) {
-                    // aggiungo il numero  all array bombsList
-                    bombsList.push( num );
-                    
-                  }
-                }
+                 // creo un ciclo fino a quando l'array non raggiunge 16 numeri
+                 while ( bombsList.length < 16 ) {
+                   // genero un numero random
+                   const num = generateRandomNumber( 1, totGriglie );
+          
+                   // se bombsList noncontiene num
+                   if ( !bombsList.includes( num ) ) {
+                     // aggiungo il numero  all array bombsList
+                     bombsList.push( num );
+                
+                   }
+                 }
               
                 return bombsList;
               }
