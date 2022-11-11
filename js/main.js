@@ -97,9 +97,11 @@ bottone.addEventListener ( "click", function () {
                     conta.innerHTML = "il tuo punteggio é di " + (counter - 1) ;
                     console.log("bombs",bombs);
                     bombaEsplosa = true
-
+                    //creiamo un ciclo per andare a prendere tutti i numeri dentro array bombs
                      for (i = 0; i<bombs.length; i++) {
+                      //prendo con il selettore ad ogni passaggio del ciclo l'elemento con indice di i
                       allBombs = document.querySelector(`.container-griglie :nth-child(${bombs[i]})`);
+                      //ad ogni passaggio del ciclo applico la classe danger
                       allBombs.classList.add("danger")
                      };
                      
